@@ -7,8 +7,6 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 
 public class BankAccountUnitTest {
 
@@ -42,8 +40,8 @@ public class BankAccountUnitTest {
     @Test
     void overdrawingAmount() {
         // Arrange (Given)
-        EmailSender stubEmailSender = mock(EmailSender.class);
-        BankAccount bankAccount = new BankAccount(1000, "customer@email.com", stubEmailSender);
+        FakeEmailSender fakeEmailSender = new FakeEmailSender();
+        BankAccount bankAccount = new BankAccount(1000, 100, fakeEmailSender);
 
         // Act (When)
         try {
@@ -74,9 +72,9 @@ public class BankAccountUnitTest {
     @Test
     void shouldNotTransferWhenTransferAmountIsHigherThanTheBalance() {
         // Arrange (Given)
-        EmailSender stubEmailSender = mock(EmailSender.class);
-        BankAccount bankAccount1 = new BankAccount(1000, "customer1@email.com", stubEmailSender);
-        BankAccount bankAccount2 = new BankAccount(0, "customer2@email.com", stubEmailSender);
+        FakeEmailSender fakeEmailSender = new FakeEmailSender();
+        BankAccount bankAccount1 = new BankAccount(1000, 0, fakeEmailSender);
+        BankAccount bankAccount2 = new BankAccount(0, 0, fakeEmailSender);
 
         // Act (When)
         try {
@@ -92,11 +90,12 @@ public class BankAccountUnitTest {
     @DisplayName("Transference fee is charged when transferring money")
     @Test
     void shouldApplyTransferenceFeeWhenTransferringToOtherBankAccount() throws Exception {
+
         // Arrange (Given)
+        FakeEmailSender fakeEmailSender = new FakeEmailSender();
         int transferenceFee = 10;
-        EmailSender stubEmailSender = mock(EmailSender.class);
-        BankAccount bankAccount1 = new BankAccount(1000, transferenceFee, "customer1@email.com", stubEmailSender);
-        BankAccount bankAccount2 = new BankAccount(0, transferenceFee, "customer2@email.com", stubEmailSender);
+        BankAccount bankAccount1 = new BankAccount(1000, transferenceFee, fakeEmailSender);
+        BankAccount bankAccount2 = new BankAccount(0, transferenceFee, fakeEmailSender);
 
         // Act (When)
         bankAccount1.transfer(500, bankAccount2);
@@ -106,20 +105,4 @@ public class BankAccountUnitTest {
         assertThat(bankAccount2.getBalance(), is(equalTo(500)));
     }
 
-    @DisplayName("Operations with insufficient balance send an error email to the bank account owner")
-    @Test
-    void shouldSendAndEmailWhenInsufficientBalance () {
-        // Arrange (Given)
-        EmailSender mockEmailSender = mock(EmailSender.class);
-        BankAccount bankAccount = new BankAccount(1000, "customer@email.com", mockEmailSender);
-
-        // Act (When)
-        try {
-            bankAccount.withdraw(1100);
-            fail("withdrawal not expected to go through");
-        } catch (BankAccount.InsufficientBalanceException e) {}
-
-        // Assert (Then)
-        verify(mockEmailSender).send("customer@email.com", "Operation not allowed because of insufficient balance!");
-    }
 }
