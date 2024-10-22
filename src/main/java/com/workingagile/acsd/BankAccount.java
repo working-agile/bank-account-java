@@ -3,15 +3,24 @@ package com.workingagile.acsd;
 public class BankAccount {
 
     private int balance;
-    private final int transferenceFee;
+    private int transferenceFee;
+    private String customerEmail;
+    private EmailSender emailSender;
 
     public BankAccount(int initialBalance) {
         this.balance = initialBalance;
-        this.transferenceFee = 0;
     }
 
-    public BankAccount(int initialBalance, int transferenceFee) {
+    public BankAccount(int initialBalance, String customerEmail, EmailSender emailSender) {
         this.balance = initialBalance;
+        this.customerEmail = customerEmail;
+        this.emailSender = emailSender;
+    }
+
+    public BankAccount(int initialBalance, int transferenceFee, String customerEmail, EmailSender emailSender) {
+        this.balance = initialBalance;
+        this.customerEmail = customerEmail;
+        this.emailSender = emailSender;
         this.transferenceFee = transferenceFee;
     }
 
@@ -25,6 +34,7 @@ public class BankAccount {
 
     public void withdraw(int amount) throws InsufficientBalanceException {
         if (amount > balance) {
+            emailSender.send(customerEmail, "Operation not allowed because of insufficient balance!");
             throw new InsufficientBalanceException();
         }
         balance = balance - amount;
