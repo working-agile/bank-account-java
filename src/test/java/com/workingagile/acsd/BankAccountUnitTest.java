@@ -1,5 +1,6 @@
 package com.workingagile.acsd;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -11,11 +12,21 @@ import static org.mockito.Mockito.mock;
 
 public class BankAccountUnitTest {
 
+    EmailSender emailSenderMock;
+    TransactionHistory transactionHistoryMock;
+
+    @BeforeEach
+    void setupMocks() {
+        emailSenderMock = mock(EmailSender.class);
+        transactionHistoryMock = mock(TransactionHistory.class);
+    }
+
     @DisplayName("Deposits should increase the balance according to the amount")
     @Test
     void depositAmount() {
         // Arrange (Given)
-        BankAccount bankAccount = new BankAccount(1000);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock,
+                transactionHistoryMock);
 
         // Act (When)
         bankAccount.deposit(200);
@@ -28,7 +39,8 @@ public class BankAccountUnitTest {
     @Test
     void withdrawAmount() throws Exception {
         // Arrange (Given)
-        BankAccount bankAccount = new BankAccount(1000);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock,
+                transactionHistoryMock);
 
         // Act (When)
         bankAccount.withdraw(200);
@@ -41,10 +53,8 @@ public class BankAccountUnitTest {
     @Test
     void overdrawingAmount() {
         // Arrange (Given)
-        FakeEmailSender fakeEmailSender = new FakeEmailSender();
-        TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        BankAccount bankAccount = new BankAccount(1000, 100, fakeEmailSender, transactionHistoryMock);
-
+        BankAccount bankAccount = new BankAccount(1000, 100, emailSenderMock,
+                transactionHistoryMock);
         // Act (When)
         try {
             bankAccount.withdraw(1100);
@@ -59,8 +69,8 @@ public class BankAccountUnitTest {
     @Test
     void shouldTransferMoneyToOtherBankAccount() throws Exception {
         // Arrange (Given)
-        BankAccount bankAccountSender = new BankAccount(1000);
-        BankAccount bankAccountReceiver = new BankAccount(0);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderMock, transactionHistoryMock);
+        BankAccount bankAccountReceiver = new BankAccount(0, 0, emailSenderMock, transactionHistoryMock);
 
         // Act (When)
         bankAccountSender.transfer(500, bankAccountReceiver);
@@ -74,12 +84,8 @@ public class BankAccountUnitTest {
     @Test
     void shouldNotTransferWhenTransferAmountIsHigherThanTheBalance() {
         // Arrange (Given)
-        FakeEmailSender fakeEmailSender = new FakeEmailSender();
-        TransactionHistory transactionHistoryMockSender = mock(TransactionHistory.class);
-        TransactionHistory transactionHistoryMockReceiver = mock(TransactionHistory.class);
-
-        BankAccount bankAccountSender = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryMockSender);
-        BankAccount bankAccountReceiver = new BankAccount(0, 0, fakeEmailSender, transactionHistoryMockReceiver);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderMock, transactionHistoryMock);
+        BankAccount bankAccountReceiver = new BankAccount(0, 0, emailSenderMock, transactionHistoryMock);
 
         // Act (When)
         try {
@@ -97,12 +103,9 @@ public class BankAccountUnitTest {
     void shouldApplyTransferFeeWhenTransferringToOtherBankAccount() throws Exception {
 
         // Arrange (Given)
-        FakeEmailSender fakeEmailSender = new FakeEmailSender();
-        TransactionHistory transactionHistoryMockSender = mock(TransactionHistory.class);
-        TransactionHistory transactionHistoryMockReceiver = mock(TransactionHistory.class);
         int transferFee = 10;
-        BankAccount bankAccountSender = new BankAccount(1000, transferFee, fakeEmailSender, transactionHistoryMockSender);
-        BankAccount bankAccountReceiver = new BankAccount(0, transferFee, fakeEmailSender, transactionHistoryMockReceiver);
+        BankAccount bankAccountSender = new BankAccount(1000, transferFee, emailSenderMock, transactionHistoryMock);
+        BankAccount bankAccountReceiver = new BankAccount(0, transferFee, emailSenderMock, transactionHistoryMock);
 
         // Act (When)
         bankAccountSender.transfer(500, bankAccountReceiver);

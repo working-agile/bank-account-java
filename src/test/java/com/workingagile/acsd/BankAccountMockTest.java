@@ -13,9 +13,9 @@ public class BankAccountMockTest {
     void should_trigger_email_when_overdrafting () {
         
         // Arrange (Given)
-        EmailSender fakeEmailSender = mock(EmailSender.class);
+        EmailSender emailSenderMock = mock(EmailSender.class);
         TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryMock);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryMock);
 
         // Act (When)
         try {
@@ -24,7 +24,7 @@ public class BankAccountMockTest {
         } catch (BankAccount.InsufficientBalanceException e) {}
 
         // Assert (Then)
-        verify(fakeEmailSender, times(1)).sendEmailToBank();
+        verify(emailSenderMock, times(1)).sendEmailToBank();
     }
 
 }
