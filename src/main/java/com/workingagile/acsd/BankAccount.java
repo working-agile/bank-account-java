@@ -28,7 +28,7 @@ public class BankAccount {
 
     public void withdraw(int amount) throws InsufficientBalanceException {
         if (amount > balance) {
-            //fakeEmailSender.sendEmailToBank();
+            fakeEmailSender.sendEmailToBank();
             throw new InsufficientBalanceException();
         }
         balance = balance - amount;
