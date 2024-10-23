@@ -1,6 +1,6 @@
 package com.workingagile.acsd;
 
-public class FakeEmailSender {
+public class FakeEmailSender implements EmailSender {
 
     boolean hasSentEmail = false;
     int howManyTimesSentEmail = 0;
