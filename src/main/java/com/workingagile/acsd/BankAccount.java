@@ -3,18 +3,18 @@ package com.workingagile.acsd;
 public class BankAccount {
 
     private int balance;
-    private int transfer;
+    private int transferFee;
 
     private FakeEmailSender fakeEmailSender;
 
     public BankAccount(int initialBalance) {
         this.balance = initialBalance;
-        transfer = 0;
+        transferFee = 0;
     }
 
     public BankAccount(int initialBalance, int transferFee, FakeEmailSender fakeEmailSender) {
         this.balance = initialBalance;
-        this.transfer = transferFee;
+        this.transferFee = transferFee;
         this.fakeEmailSender = fakeEmailSender;
     }
 
@@ -35,7 +35,7 @@ public class BankAccount {
     }
 
     public void transfer(int amount, BankAccount receiverAccount) throws InsufficientBalanceException {
-        withdraw(amount + transfer);
+        withdraw(amount + transferFee);
         receiverAccount.deposit(amount);
     }
 
