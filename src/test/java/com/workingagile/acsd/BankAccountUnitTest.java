@@ -56,48 +56,48 @@ public class BankAccountUnitTest {
     @Test
     void shouldTransferMoneyToOtherBankAccount() throws Exception {
         // Arrange (Given)
-        BankAccount bankAccount1 = new BankAccount(1000);
-        BankAccount bankAccount2 = new BankAccount(0);
+        BankAccount bankAccountSender = new BankAccount(1000);
+        BankAccount bankAccountReceiver = new BankAccount(0);
 
         // Act (When)
-        bankAccount1.transfer(500, bankAccount2);
+        bankAccountSender.transfer(500, bankAccountReceiver);
 
         // Assert (Then)
-        assertThat(bankAccount1.getBalance(), is(equalTo(500)));
-        assertThat(bankAccount2.getBalance(), is(equalTo(500)));
+        assertThat(bankAccountSender.getBalance(), is(equalTo(500)));
+        assertThat(bankAccountReceiver.getBalance(), is(equalTo(500)));
     }
 
     @DisplayName("Transfer amount higher than the balance, should not transfer")
     @Test
     void shouldNotTransferWhenTransferAmountIsHigherThanTheBalance() {
         // Arrange (Given)
-        BankAccount bankAccount1 = new BankAccount(1000);
-        BankAccount bankAccount2 = new BankAccount(0);
+        BankAccount bankAccountSender = new BankAccount(1000);
+        BankAccount bankAccountReceiver = new BankAccount(0);
 
         // Act (When)
         try {
-            bankAccount1.transfer(1100, bankAccount2);
+            bankAccountSender.transfer(1100, bankAccountReceiver);
             fail("transfer not expected to go through");
         } catch (BankAccount.InsufficientBalanceException e) {}
 
         // Assert (Then)
-        assertThat(bankAccount1.getBalance(), is(equalTo(1000)));
-        assertThat(bankAccount2.getBalance(), is(equalTo(0)));
+        assertThat(bankAccountSender.getBalance(), is(equalTo(1000)));
+        assertThat(bankAccountReceiver.getBalance(), is(equalTo(0)));
     }
 
-    @DisplayName("Transference fee is charged when transferring money")
+    @DisplayName("Transfer fee is charged when transferring money")
     @Test
     void shouldApplyTransferenceFeeWhenTransferringToOtherBankAccount() throws Exception {
         // Arrange (Given)
         int transferenceFee = 10;
-        BankAccount bankAccount1 = new BankAccount(1000, transferenceFee);
-        BankAccount bankAccount2 = new BankAccount(0, transferenceFee);
+        BankAccount bankAccountSender = new BankAccount(1000, transferenceFee);
+        BankAccount bankAccountReceiver = new BankAccount(0, transferenceFee);
 
         // Act (When)
-        bankAccount1.transfer(500, bankAccount2);
+        bankAccountSender.transfer(500, bankAccountReceiver);
 
         // Assert (Then)
-        assertThat(bankAccount1.getBalance(), is(equalTo(490)));
-        assertThat(bankAccount2.getBalance(), is(equalTo(500)));
+        assertThat(bankAccountSender.getBalance(), is(equalTo(490)));
+        assertThat(bankAccountReceiver.getBalance(), is(equalTo(500)));
     }
 }
