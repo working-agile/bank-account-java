@@ -57,15 +57,15 @@ public class BankAccountUnitTest {
     @Test
     void shouldTransferMoneyToOtherBankAccount() throws Exception {
         // Arrange (Given)
-        BankAccount bankAccount1 = new BankAccount(1000);
-        BankAccount bankAccount2 = new BankAccount(0);
+        BankAccount bankAccountSender = new BankAccount(1000);
+        BankAccount bankAccountReceiver = new BankAccount(0);
 
         // Act (When)
-        bankAccount1.transfer(500, bankAccount2);
+        bankAccountSender.transfer(500, bankAccountReceiver);
 
         // Assert (Then)
-        assertThat(bankAccount1.getBalance(), is(equalTo(500)));
-        assertThat(bankAccount2.getBalance(), is(equalTo(500)));
+        assertThat(bankAccountSender.getBalance(), is(equalTo(500)));
+        assertThat(bankAccountReceiver.getBalance(), is(equalTo(500)));
     }
 
     @DisplayName("Transfer amount higher than the balance, should not transfer")
@@ -73,36 +73,36 @@ public class BankAccountUnitTest {
     void shouldNotTransferWhenTransferAmountIsHigherThanTheBalance() {
         // Arrange (Given)
         FakeEmailSender fakeEmailSender = new FakeEmailSender();
-        BankAccount bankAccount1 = new BankAccount(1000, 0, fakeEmailSender);
-        BankAccount bankAccount2 = new BankAccount(0, 0, fakeEmailSender);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, fakeEmailSender);
+        BankAccount bankAccountReceiver = new BankAccount(0, 0, fakeEmailSender);
 
         // Act (When)
         try {
-            bankAccount1.transfer(1100, bankAccount2);
+            bankAccountSender.transfer(1100, bankAccountReceiver);
             fail("transfer not expected to go through");
         } catch (BankAccount.InsufficientBalanceException e) {}
 
         // Assert (Then)
-        assertThat(bankAccount1.getBalance(), is(equalTo(1000)));
-        assertThat(bankAccount2.getBalance(), is(equalTo(0)));
+        assertThat(bankAccountSender.getBalance(), is(equalTo(1000)));
+        assertThat(bankAccountReceiver.getBalance(), is(equalTo(0)));
     }
 
-    @DisplayName("Transference fee is charged when transferring money")
+    @DisplayName("Transfer fee is charged when transferring money")
     @Test
-    void shouldApplyTransferenceFeeWhenTransferringToOtherBankAccount() throws Exception {
+    void shouldApplyTransferFeeWhenTransferringToOtherBankAccount() throws Exception {
 
         // Arrange (Given)
         FakeEmailSender fakeEmailSender = new FakeEmailSender();
-        int transferenceFee = 10;
-        BankAccount bankAccount1 = new BankAccount(1000, transferenceFee, fakeEmailSender);
-        BankAccount bankAccount2 = new BankAccount(0, transferenceFee, fakeEmailSender);
+        int transferFee = 10;
+        BankAccount bankAccountSender = new BankAccount(1000, transferFee, fakeEmailSender);
+        BankAccount bankAccountReceiver = new BankAccount(0, transferFee, fakeEmailSender);
 
         // Act (When)
-        bankAccount1.transfer(500, bankAccount2);
+        bankAccountSender.transfer(500, bankAccountReceiver);
 
         // Assert (Then)
-        assertThat(bankAccount1.getBalance(), is(equalTo(490)));
-        assertThat(bankAccount2.getBalance(), is(equalTo(500)));
+        assertThat(bankAccountSender.getBalance(), is(equalTo(490)));
+        assertThat(bankAccountReceiver.getBalance(), is(equalTo(500)));
     }
 
 }
