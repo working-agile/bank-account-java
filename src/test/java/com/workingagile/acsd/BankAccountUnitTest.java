@@ -89,9 +89,9 @@ public class BankAccountUnitTest {
     @Test
     void shouldApplyTransferenceFeeWhenTransferringToOtherBankAccount() throws Exception {
         // Arrange (Given)
-        int transferenceFee = 10;
-        BankAccount bankAccountSender = new BankAccount(1000, transferenceFee);
-        BankAccount bankAccountReceiver = new BankAccount(0, transferenceFee);
+        int transferFee = 10;
+        BankAccount bankAccountSender = new BankAccount(1000, transferFee);
+        BankAccount bankAccountReceiver = new BankAccount(0, transferFee);
 
         // Act (When)
         bankAccountSender.transfer(500, bankAccountReceiver);
