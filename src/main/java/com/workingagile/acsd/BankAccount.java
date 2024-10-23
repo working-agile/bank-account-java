@@ -12,7 +12,8 @@ public class BankAccount {
         transferFee = 0;
     }
 
-    public BankAccount(int initialBalance, int transferFee, EmailSender emailSender) {
+    public BankAccount(int initialBalance, int transferFee, EmailSender emailSender,
+                       TransactionHistory transactionHistory) {
         this.balance = initialBalance;
         this.transferFee = transferFee;
         this.emailSender = emailSender;

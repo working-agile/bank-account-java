@@ -14,7 +14,8 @@ public class BankAccountMockTest {
         
         // Arrange (Given)
         EmailSender fakeEmailSender = mock(EmailSender.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, fakeEmailSender);
+        TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
+        BankAccount bankAccount = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryMock);
 
         // Act (When)
         try {
