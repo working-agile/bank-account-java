@@ -1,5 +1,7 @@
 package com.workingagile.acsd;
 
+import java.util.List;
+
 public class BankAccount {
 
     private int balance;
@@ -42,8 +44,19 @@ public class BankAccount {
     }
 
     public String getBankStatement() {
-        return null;
+        List<Integer> transactionList = transactionHistory.getTransactionHistory();
+        StringBuffer statement = new StringBuffer("balance:");
+        statement.append(balance).append(",transactionHistory:");
+
+        if (transactionList.isEmpty()) {
+            statement.append("empty");
+        } else {
+            int amount = transactionList.get(0);
+            statement.append("[deposit:").append(amount).append("]");
+        }
+        return statement.toString();
     }
+
 
     public static class InsufficientBalanceException extends Exception {}
 }

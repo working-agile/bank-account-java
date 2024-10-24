@@ -1,7 +1,11 @@
 package com.workingagile.acsd;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
@@ -10,14 +14,24 @@ import static org.mockito.Mockito.*;
 
 public class BankStatementStubTest {
 
+    EmailSender emailSenderMock;
+
+    @BeforeEach
+    void setupMocks() {
+        emailSenderMock = mock(EmailSender.class);
+    }
+
+
     @DisplayName("How a bank statement with empty transaction history looks like")
     @Test
-    void bankstatement_with_empty_transaction_history () {
+    void bank_statement_with_empty_transaction_history () {
 
         // Arrange (Given)
-        EmailSender emailSenderMock = mock(EmailSender.class);
-        TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryMock);
+        TransactionHistory transactionHistoryStub = mock(TransactionHistory.class);
+        List<Integer> emptyTransactionList = new ArrayList<>();
+        when(transactionHistoryStub.getTransactionHistory()).thenReturn(emptyTransactionList);
+
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryStub);
 
         // Act (When)
         String bankStatement = bankAccount.getBankStatement();
@@ -27,8 +41,45 @@ public class BankStatementStubTest {
     }
 
 
+    @DisplayName("How a bank statement with one deposit looks like")
+    @Test
+    void bank_statement_with_one_deposit () {
+
+        // Arrange (Given)
+        TransactionHistory transactionHistoryStub = mock(TransactionHistory.class);
+        List<Integer> transactionList = new ArrayList<>();
+        transactionList.add(50);
+        when(transactionHistoryStub.getTransactionHistory()).thenReturn(transactionList);
+
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryStub);
+
+        // Act (When)
+        String bankStatement = bankAccount.getBankStatement();
+
+        // Assert (Then)
+        assertThat(bankStatement, is(equalTo("balance:1000,transactionHistory:[deposit:50]")));
+    }
 
 
+    @DisplayName("How a bank statement with one deposit and a withdrawal looks like")
+    @Test
+    void bank_statement_with_one_deposit_and_a_withdrawal () {
+
+        // Arrange (Given)
+        TransactionHistory transactionHistoryStub = mock(TransactionHistory.class);
+        List<Integer> transactionList = new ArrayList<>();
+        transactionList.add(50);
+        transactionList.add(-30);
+        when(transactionHistoryStub.getTransactionHistory()).thenReturn(transactionList);
+
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryStub);
+
+        // Act (When)
+        String bankStatement = bankAccount.getBankStatement();
+
+        // Assert (Then)
+        assertThat(bankStatement, is(equalTo("balance:1000,transactionHistory:[deposit:50,withdrawal:30]")));
+    }
 
 
 }
