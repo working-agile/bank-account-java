@@ -75,6 +75,26 @@ public class TransactionHistoryTest {
         verify(transactionHistoryReceiverMock, times(1)).informTransaction("deposit", 300);
     }
 
+    @DisplayName("Unsuccessful transfers are not registered in the TransactionHistory")
+    @Test
+    void unsuccessful_transfers_are_not_registered_in_the_transaction_history() throws Exception {
+        // Arrange (Given)
+        TransactionHistory transactionHistorySenderMock = mock(TransactionHistory.class);
+        TransactionHistory transactionHistoryReceiverMock = mock(TransactionHistory.class);
+        EmailSender fakeEmailSender = mock(EmailSender.class);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, fakeEmailSender, transactionHistorySenderMock);
+        BankAccount bankAccountReceiver = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryReceiverMock);
+
+        // Act (When)
+        try {
+            bankAccountSender.transfer(1001, bankAccountReceiver);
+        } catch (Exception e) {}
+
+        // Assert (Then)
+        verify(transactionHistorySenderMock, never()).informTransaction(any(String.class), (anyInt()));
+        verify(transactionHistoryReceiverMock, never()).informTransaction(any(String.class), (anyInt()));
+    }
+
 
 
 }
