@@ -22,4 +22,19 @@ public class TransactionHistoryTest {
         verify(transactionHistoryMock, times(1)).informTransaction("deposit", 200);
     }
 
+    @DisplayName("Withdrawals should be informed to the transaction history")
+    @Test
+    void the_withdrawal_is_informed_to_the_transaction_history() throws Exception {
+        // Arrange (Given)
+        TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
+        EmailSender fakeEmailSender = mock(EmailSender.class);
+        BankAccount bankAccount = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryMock);
+
+        // Act (When)
+        bankAccount.withdraw(200);
+
+        // Assert (Then)
+        verify(transactionHistoryMock, times(1)).informTransaction("withdraw", 200);
+    }
+
 }
