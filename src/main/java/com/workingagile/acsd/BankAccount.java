@@ -51,8 +51,20 @@ public class BankAccount {
         if (transactionList.isEmpty()) {
             statement.append("empty");
         } else {
-            int amount = transactionList.get(0);
-            statement.append("[deposit:").append(amount).append("]");
+            statement.append("[");
+            int numTransactions = transactionList.size();
+            for (int i=0; i<numTransactions; i++) {
+                int amount = transactionList.get(i);
+                if (amount >= 0) {
+                    statement.append("deposit:").append(amount);
+                } else {
+                    statement.append("withdrawal:").append(-amount);
+                }
+                if (i<numTransactions-1) {
+                    statement.append(",");
+                }
+            }
+            statement.append("]");
         }
         return statement.toString();
     }
