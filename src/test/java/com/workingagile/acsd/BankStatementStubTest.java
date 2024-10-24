@@ -81,5 +81,27 @@ public class BankStatementStubTest {
         assertThat(bankStatement, is(equalTo("balance:1000,transactionHistory:[deposit:50,withdrawal:30]")));
     }
 
+    @DisplayName("How a complete bank statement should look like ")
+    @Test
+    void complete_bank_statement_looks_like () {
+
+        // Arrange (Given)
+        TransactionHistory transactionHistoryStub = mock(TransactionHistory.class);
+        List<Integer> transactionList = new ArrayList<>();
+        transactionList.add(50);
+        transactionList.add(-30);
+        transactionList.add(-10);
+        transactionList.add(550);
+        when(transactionHistoryStub.getTransactionHistory()).thenReturn(transactionList);
+
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryStub);
+
+        // Act (When)
+        String bankStatement = bankAccount.getBankStatement();
+
+        // Assert (Then)
+        assertThat(bankStatement, is(equalTo(
+                "balance:1000,transactionHistory:[deposit:50,withdrawal:30,withdrawal:10,deposit:550]")));
+    }
 
 }
