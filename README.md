@@ -12,6 +12,7 @@ Bank Account exercise
 * main: empty
 * bank-account-java: basic project, no implementation
 * bank-account-with-unit-tests: basic functionalities implemented, with unit tests
+* bank-account-with-tdd
 * bank-account-manual-mock: showcases how to implement a mock for dependencies
 * bank-account-manual-mock-with-interfaces: showcases dependency injection
 * bank-account-mock: showcases use of Mockito
