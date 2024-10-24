@@ -57,7 +57,7 @@ public class TransactionHistoryTest {
 
     @DisplayName("Successful transfers are registered in the TransactionHistory")
     @Test
-    void successful_transfers_are_registered_in_the_transaction_history() throws Exception {
+    void successful_transfers_are_registered_in_the_transaction_history() {
         // Arrange (Given)
         TransactionHistory transactionHistorySenderMock = mock(TransactionHistory.class);
         TransactionHistory transactionHistoryReceiverMock = mock(TransactionHistory.class);
@@ -77,7 +77,7 @@ public class TransactionHistoryTest {
 
     @DisplayName("Unsuccessful transfers are not registered in the TransactionHistory")
     @Test
-    void unsuccessful_transfers_are_not_registered_in_the_transaction_history() throws Exception {
+    void unsuccessful_transfers_are_not_registered_in_the_transaction_history() {
         // Arrange (Given)
         TransactionHistory transactionHistorySenderMock = mock(TransactionHistory.class);
         TransactionHistory transactionHistoryReceiverMock = mock(TransactionHistory.class);
