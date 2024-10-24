@@ -62,5 +62,43 @@ public class TransactionHistoryInMemoryTest {
 
     }
 
+    @DisplayName("informing a deposit and a withdrawal")
+    @Test
+    void informing_a_deposit_and_a_withdrawal() {
+
+        // Arrange (Given)
+        TransactionHistoryInMemory transactionHistory = new TransactionHistoryInMemory();
+
+        // Act (When)
+        transactionHistory.informTransaction("deposit", 100);
+        transactionHistory.informTransaction("withdraw", 50);
+
+        // Assert (Then)
+        List<Integer> transactionList = transactionHistory.getTransactionHistory();
+        assertThat(transactionList, is(not(empty())));
+        assertThat(transactionList.size(), is(2));
+        assertThat(transactionList.get(0), is(100));
+        assertThat(transactionList.get(1), is(-50));
+
+    }
+
+    @DisplayName("the transaction history does not expose internal objects")
+    @Test
+    void the_transaction_history_does_not_expose_internal_objects() {
+
+        // Arrange (Given)
+        TransactionHistoryInMemory transactionHistory = new TransactionHistoryInMemory();
+        transactionHistory.informTransaction("deposit", 100);
+        List<Integer> transactionList = transactionHistory.getTransactionHistory();
+
+        // Act (When)
+        transactionList.set(0, 200);
+
+        // Assert (Then)
+        List<Integer> transactionList2 = transactionHistory.getTransactionHistory();
+        assertThat(transactionList2.get(0), is(100));
+
+    }
+
 
 }

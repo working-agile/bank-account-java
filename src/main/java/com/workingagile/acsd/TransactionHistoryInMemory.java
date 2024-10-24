@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TransactionHistoryInMemory implements TransactionHistory{
 
-    private List<Integer> transactions;
+    private final List<Integer> transactions;
 
     public TransactionHistoryInMemory() {
         transactions = new ArrayList<>();
@@ -21,7 +21,7 @@ public class TransactionHistoryInMemory implements TransactionHistory{
 
     @Override
     public List<Integer> getTransactionHistory() {
-        return transactions;
+        return new ArrayList<>(transactions);
     }
 
 
