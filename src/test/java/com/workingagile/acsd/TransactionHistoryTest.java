@@ -39,7 +39,7 @@ public class TransactionHistoryTest {
 
     @DisplayName("Withdrawal that goes not through is not informed to the transaction history")
     @Test
-    void aborted_withdrawals_are_not_informed_to_the_transaction_history() throws Exception {
+    void aborted_withdrawals_are_not_informed_to_the_transaction_history() {
         // Arrange (Given)
         TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
         EmailSender fakeEmailSender = mock(EmailSender.class);
@@ -53,5 +53,28 @@ public class TransactionHistoryTest {
         // Assert (Then)
         verify(transactionHistoryMock, never()).informTransaction(any(String.class), (anyInt()));
     }
+
+
+    @DisplayName("Successful transfers are registered in the TransactionHistory")
+    @Test
+    void successful_transfers_are_registered_in_the_transaction_history() throws Exception {
+        // Arrange (Given)
+        TransactionHistory transactionHistorySenderMock = mock(TransactionHistory.class);
+        TransactionHistory transactionHistoryReceiverMock = mock(TransactionHistory.class);
+        EmailSender fakeEmailSender = mock(EmailSender.class);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, fakeEmailSender, transactionHistorySenderMock);
+        BankAccount bankAccountReceiver = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryReceiverMock);
+
+        // Act (When)
+        try {
+            bankAccountSender.transfer(300, bankAccountReceiver);
+        } catch (Exception e) {}
+
+        // Assert (Then)
+        verify(transactionHistorySenderMock, times(1)).informTransaction("withdraw", 300);
+        verify(transactionHistoryReceiverMock, times(1)).informTransaction("deposit", 300);
+    }
+
+
 
 }
