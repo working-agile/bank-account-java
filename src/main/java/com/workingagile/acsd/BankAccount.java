@@ -41,5 +41,9 @@ public class BankAccount {
         receiverAccount.deposit(amount);
     }
 
+    public String getBankStatement() {
+        return null;
+    }
+
     public static class InsufficientBalanceException extends Exception {}
 }
