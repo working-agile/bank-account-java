@@ -26,11 +26,14 @@ public class BankAccount {
     }
 
     public void withdraw(int amount) throws InsufficientBalanceException {
+
         if (amount > balance) {
             emailSender.sendEmailToBank();
             throw new InsufficientBalanceException();
         }
         balance = balance - amount;
+
+        transactionHistory.informTransaction("withdraw", amount);
     }
 
     public void transfer(int amount, BankAccount receiverAccount) throws InsufficientBalanceException {
