@@ -45,7 +45,7 @@ public class BankAccount {
 
     public String getBankStatement() {
         List<Integer> transactionList = transactionHistory.getTransactionHistory();
-        StringBuffer statement = new StringBuffer("balance:");
+        StringBuilder statement = new StringBuilder("balance:");
         statement.append(balance).append(",transactionHistory:");
 
         if (transactionList.isEmpty()) {
