@@ -4,9 +4,16 @@ Bank Account exercise
 
 ### What is this repository for? ###
 
-* Compare Unit tests with BDD scenarios
+Coding exercises for the Introduction to TDD and BDD.
+Part of the A-CSD training course.
 
+### What is this branch for? ###
 
+Implementation of the functionalities of
+* deposit
+* withdraw
+
+and their corresponding unit tests.
 
 ### Who do I talk to? ###
 
