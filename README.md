@@ -4,8 +4,15 @@ Bank Account exercise
 
 ### What is this repository for? ###
 
-* Introduce basic principles for TDD
-* Branches show different steps in TDD
+Coding exercises for the Introduction to TDD and BDD.
+Part of the A-CSD training course.
+
+### What is this branch for? ###
+
+Start coding the basic functionalities of BankAccount:
+
+* deposit
+* withdraw
 
 ### Branches ###
 
