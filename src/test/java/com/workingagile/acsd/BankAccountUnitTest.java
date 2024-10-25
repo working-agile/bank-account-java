@@ -7,6 +7,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 public class BankAccountUnitTest {
 
@@ -40,8 +41,8 @@ public class BankAccountUnitTest {
     @Test
     void overdrawingAmount() {
         // Arrange (Given)
-        FakeEmailSender fakeEmailSender = new FakeEmailSender();
-        BankAccount bankAccount = new BankAccount(1000, 100, fakeEmailSender);
+        EmailSender dummyEmailSender = mock(EmailSender.class);
+        BankAccount bankAccount = new BankAccount(1000, 100, dummyEmailSender);
 
         // Act (When)
         try {
@@ -72,9 +73,9 @@ public class BankAccountUnitTest {
     @Test
     void shouldNotTransferWhenTransferAmountIsHigherThanTheBalance() {
         // Arrange (Given)
-        FakeEmailSender fakeEmailSender = new FakeEmailSender();
-        BankAccount bankAccountSender = new BankAccount(1000, 0, fakeEmailSender);
-        BankAccount bankAccountReceiver = new BankAccount(0, 0, fakeEmailSender);
+        EmailSender dummyEmailSender = mock(EmailSender.class);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, dummyEmailSender);
+        BankAccount bankAccountReceiver = new BankAccount(0, 0, dummyEmailSender);
 
         // Act (When)
         try {
@@ -92,10 +93,10 @@ public class BankAccountUnitTest {
     void shouldApplyTransferFeeWhenTransferringToOtherBankAccount() throws Exception {
 
         // Arrange (Given)
-        FakeEmailSender fakeEmailSender = new FakeEmailSender();
+        EmailSender dummyEmailSender = mock(EmailSender.class);
         int transferFee = 10;
-        BankAccount bankAccountSender = new BankAccount(1000, transferFee, fakeEmailSender);
-        BankAccount bankAccountReceiver = new BankAccount(0, transferFee, fakeEmailSender);
+        BankAccount bankAccountSender = new BankAccount(1000, transferFee, dummyEmailSender);
+        BankAccount bankAccountReceiver = new BankAccount(0, transferFee, dummyEmailSender);
 
         // Act (When)
         bankAccountSender.transfer(500, bankAccountReceiver);
