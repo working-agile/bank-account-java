@@ -4,8 +4,22 @@ Bank Account exercise
 
 ### What is this repository for? ###
 
-* Introduce basic principles for TDD
-* Branches show different steps in TDD
+Coding exercises for the Introduction to TDD and BDD.
+Part of the A-CSD training course.
+
+### What is this branch for? ###
+
+This branch showcases the use of a manually developed mock email sender component:
+
+* FakeEmailSender
+
+In order to prevent a direct dependency on the mock implementation, the DIP (Dependency Inversion Principle)
+is applied by introducing the interface:
+
+* EmailSender
+
+DIP says: high-level modules should not depend on low-level modules (both should depend on abstractions)
+DI: Dependency Injection: BankAccount's dependencies are injected.
 
 ### Branches ###
 
