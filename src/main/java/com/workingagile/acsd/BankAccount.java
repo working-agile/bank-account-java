@@ -3,7 +3,7 @@ package com.workingagile.acsd;
 public class BankAccount {
 
     private int balance;
-    private int transferFee;
+    private final int transferFee;
 
     private EmailSender emailSender;
 
