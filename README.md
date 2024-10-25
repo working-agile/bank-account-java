@@ -4,8 +4,17 @@ Bank Account exercise
 
 ### What is this repository for? ###
 
-* Introduce basic principles for TDD
-* Branches show different steps in TDD
+Coding exercises for the Introduction to TDD and BDD.
+Part of the A-CSD training course.
+
+### What is this branch for? ###
+
+* This branch showcases the use of tool Mockito that allows to generate mock objects dynamically,
+so that they don't have to be developed manually.
+
+Mocks allow to specify expectation: expectations about the interaction with the object.
+
+* The unit tests also showcase the use of Dummy objects, created with Mockito.
 
 ### Branches ###
 
