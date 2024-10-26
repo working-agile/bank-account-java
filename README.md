@@ -9,10 +9,10 @@ Part of the A-CSD training course.
 
 ### What is this branch for? ###
 
-* This branch showcases the use of tool Mockito that allows to generate mock objects dynamically,
+* This branch showcases the use of tool `Mockito` that allows to generate mock objects dynamically,
 so that they don't have to be developed manually.
 
-Mocks allow to specify expectation: expectations about the interaction with the object.
+* Mocks allow to specify *expectation*: expectations about the interaction with the object.
 
 * The unit tests also showcase the use of Dummy objects, created with Mockito.
 
@@ -28,7 +28,7 @@ Mocks allow to specify expectation: expectations about the interaction with the 
 * 7-bank-account-with-transaction-history: showcase creation of new dependency
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
-
+* 10-bank-account-with-transaction-history-integration-test
 
 
 
