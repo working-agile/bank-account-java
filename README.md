@@ -4,8 +4,20 @@ Bank Account exercise
 
 ### What is this repository for? ###
 
-* Introduce basic principles for TDD
-* Branches show different steps in TDD
+Coding exercises for the Introduction to TDD and BDD.
+Part of the A-CSD training course.
+
+### What is this branch for? ###
+
+Here is showcased how a stub of `TransactionHistory` is used to provide test data.
+
+The test data is necessary to test-drive
+some functionality in `BankAccount`.
+
+It does __NOT__ show how the `TransactionHistory` itself is implemented (see branch 10).
+
+
+
 
 ### Branches ###
 
