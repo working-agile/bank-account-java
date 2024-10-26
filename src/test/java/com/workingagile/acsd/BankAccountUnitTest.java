@@ -12,21 +12,21 @@ import static org.mockito.Mockito.mock;
 
 public class BankAccountUnitTest {
 
-    EmailSender emailSenderMock;
-    TransactionHistory transactionHistoryMock;
+    EmailSender emailSenderDummy;
+    TransactionHistory transactionHistoryDummy;
 
     @BeforeEach
     void setupMocks() {
-        emailSenderMock = mock(EmailSender.class);
-        transactionHistoryMock = mock(TransactionHistory.class);
+        emailSenderDummy = mock(EmailSender.class);
+        transactionHistoryDummy = mock(TransactionHistory.class);
     }
 
     @DisplayName("Deposits should increase the balance according to the amount")
     @Test
     void depositAmount() {
         // Arrange (Given)
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock,
-                transactionHistoryMock);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy,
+                transactionHistoryDummy);
 
         // Act (When)
         bankAccount.deposit(200);
@@ -39,8 +39,8 @@ public class BankAccountUnitTest {
     @Test
     void withdrawAmount() throws Exception {
         // Arrange (Given)
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock,
-                transactionHistoryMock);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy,
+                transactionHistoryDummy);
 
         // Act (When)
         bankAccount.withdraw(200);
@@ -53,8 +53,8 @@ public class BankAccountUnitTest {
     @Test
     void overdrawingAmount() {
         // Arrange (Given)
-        BankAccount bankAccount = new BankAccount(1000, 100, emailSenderMock,
-                transactionHistoryMock);
+        BankAccount bankAccount = new BankAccount(1000, 100, emailSenderDummy,
+                transactionHistoryDummy);
         // Act (When)
         try {
             bankAccount.withdraw(1100);
@@ -69,8 +69,8 @@ public class BankAccountUnitTest {
     @Test
     void shouldTransferMoneyToOtherBankAccount() throws Exception {
         // Arrange (Given)
-        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderMock, transactionHistoryMock);
-        BankAccount bankAccountReceiver = new BankAccount(0, 0, emailSenderMock, transactionHistoryMock);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryDummy);
+        BankAccount bankAccountReceiver = new BankAccount(0, 0, emailSenderDummy, transactionHistoryDummy);
 
         // Act (When)
         bankAccountSender.transfer(500, bankAccountReceiver);
@@ -84,8 +84,8 @@ public class BankAccountUnitTest {
     @Test
     void shouldNotTransferWhenTransferAmountIsHigherThanTheBalance() {
         // Arrange (Given)
-        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderMock, transactionHistoryMock);
-        BankAccount bankAccountReceiver = new BankAccount(0, 0, emailSenderMock, transactionHistoryMock);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryDummy);
+        BankAccount bankAccountReceiver = new BankAccount(0, 0, emailSenderDummy, transactionHistoryDummy);
 
         // Act (When)
         try {
@@ -104,8 +104,8 @@ public class BankAccountUnitTest {
 
         // Arrange (Given)
         int transferFee = 10;
-        BankAccount bankAccountSender = new BankAccount(1000, transferFee, emailSenderMock, transactionHistoryMock);
-        BankAccount bankAccountReceiver = new BankAccount(0, transferFee, emailSenderMock, transactionHistoryMock);
+        BankAccount bankAccountSender = new BankAccount(1000, transferFee, emailSenderDummy, transactionHistoryDummy);
+        BankAccount bankAccountReceiver = new BankAccount(0, transferFee, emailSenderDummy, transactionHistoryDummy);
 
         // Act (When)
         bankAccountSender.transfer(500, bankAccountReceiver);
