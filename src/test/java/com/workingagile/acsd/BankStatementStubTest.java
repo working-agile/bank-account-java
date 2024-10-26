@@ -14,11 +14,11 @@ import static org.mockito.Mockito.*;
 
 public class BankStatementStubTest {
 
-    EmailSender emailSenderMock;
+    EmailSender emailSenderDummy;
 
     @BeforeEach
     void setupMocks() {
-        emailSenderMock = mock(EmailSender.class);
+        emailSenderDummy = mock(EmailSender.class);
     }
 
 
@@ -31,7 +31,7 @@ public class BankStatementStubTest {
         List<Integer> emptyTransactionList = new ArrayList<>();
         when(transactionHistoryStub.getTransactionHistory()).thenReturn(emptyTransactionList);
 
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryStub);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryStub);
 
         // Act (When)
         String bankStatement = bankAccount.getBankStatement();
@@ -51,7 +51,7 @@ public class BankStatementStubTest {
         transactionList.add(50);
         when(transactionHistoryStub.getTransactionHistory()).thenReturn(transactionList);
 
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryStub);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryStub);
 
         // Act (When)
         String bankStatement = bankAccount.getBankStatement();
@@ -72,7 +72,7 @@ public class BankStatementStubTest {
         transactionList.add(-30);
         when(transactionHistoryStub.getTransactionHistory()).thenReturn(transactionList);
 
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryStub);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryStub);
 
         // Act (When)
         String bankStatement = bankAccount.getBankStatement();
@@ -94,7 +94,7 @@ public class BankStatementStubTest {
         transactionList.add(550);
         when(transactionHistoryStub.getTransactionHistory()).thenReturn(transactionList);
 
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryStub);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryStub);
 
         // Act (When)
         String bankStatement = bankAccount.getBankStatement();
