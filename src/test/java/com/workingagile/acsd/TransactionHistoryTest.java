@@ -1,5 +1,6 @@
 package com.workingagile.acsd;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -7,13 +8,19 @@ import static org.mockito.Mockito.*;
 
 public class TransactionHistoryTest {
 
+    EmailSender emailSenderDummy;
+
+    @BeforeEach
+    void setupMocks() {
+        emailSenderDummy = mock(EmailSender.class);
+    }
+
     @DisplayName("Deposits should be informed to the transaction history")
     @Test
     void the_deposit_is_informed_to_the_transaction_history() {
         // Arrange (Given)
         TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        EmailSender fakeEmailSender = mock(EmailSender.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryMock);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryMock);
 
         // Act (When)
         bankAccount.deposit(200);
@@ -27,8 +34,7 @@ public class TransactionHistoryTest {
     void the_withdrawal_is_informed_to_the_transaction_history() throws Exception {
         // Arrange (Given)
         TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        EmailSender fakeEmailSender = mock(EmailSender.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryMock);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryMock);
 
         // Act (When)
         bankAccount.withdraw(200);
@@ -42,8 +48,7 @@ public class TransactionHistoryTest {
     void aborted_withdrawals_are_not_informed_to_the_transaction_history() {
         // Arrange (Given)
         TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        EmailSender fakeEmailSender = mock(EmailSender.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryMock);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryMock);
 
         // Act (When)
         try {
@@ -61,9 +66,8 @@ public class TransactionHistoryTest {
         // Arrange (Given)
         TransactionHistory transactionHistorySenderMock = mock(TransactionHistory.class);
         TransactionHistory transactionHistoryReceiverMock = mock(TransactionHistory.class);
-        EmailSender fakeEmailSender = mock(EmailSender.class);
-        BankAccount bankAccountSender = new BankAccount(1000, 0, fakeEmailSender, transactionHistorySenderMock);
-        BankAccount bankAccountReceiver = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryReceiverMock);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistorySenderMock);
+        BankAccount bankAccountReceiver = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryReceiverMock);
 
         // Act (When)
         try {
@@ -81,9 +85,8 @@ public class TransactionHistoryTest {
         // Arrange (Given)
         TransactionHistory transactionHistorySenderMock = mock(TransactionHistory.class);
         TransactionHistory transactionHistoryReceiverMock = mock(TransactionHistory.class);
-        EmailSender fakeEmailSender = mock(EmailSender.class);
-        BankAccount bankAccountSender = new BankAccount(1000, 0, fakeEmailSender, transactionHistorySenderMock);
-        BankAccount bankAccountReceiver = new BankAccount(1000, 0, fakeEmailSender, transactionHistoryReceiverMock);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistorySenderMock);
+        BankAccount bankAccountReceiver = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryReceiverMock);
 
         // Act (When)
         try {
