@@ -4,8 +4,12 @@ Bank Account exercise
 
 ### What is this repository for? ###
 
-* Introduce basic principles for TDD
-* Branches show different steps in TDD
+Coding exercises for the Introduction to TDD and BDD.
+Part of the A-CSD training course.
+
+### What is this branch for? ###
+
+* TDD-style implementation of `TransactionHistory` as an in memory implementation.
 
 ### Branches ###
 
@@ -19,7 +23,7 @@ Bank Account exercise
 * 7-bank-account-with-transaction-history: showcase creation of new dependency
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
-
+* 10-bank-account-with-transaction-history-integration-test
 
 
 
@@ -27,5 +31,6 @@ Bank Account exercise
 
 * Axel Wilhelm Berle
 * axelberle@gmail.com
+
 
 
