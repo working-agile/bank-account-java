@@ -10,9 +10,9 @@ Part of the A-CSD training course.
 ### What is this branch for? ###
 
 This branch shows the result of developing additional functionality with TDD.
-The students working on branch 2 and can check a possible solution in this branche 3.
+The students are working on branch 2 and can check a possible solution in this branch (3).
 
-* transfer
+> `transfer()`
 
     
 
@@ -28,7 +28,7 @@ The students working on branch 2 and can check a possible solution in this branc
 * 7-bank-account-with-transaction-history: showcase creation of new dependency
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
-
+* 10-bank-account-with-transaction-history-integration-test
 
 
 
