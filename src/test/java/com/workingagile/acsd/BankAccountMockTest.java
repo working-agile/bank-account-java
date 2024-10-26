@@ -11,11 +11,11 @@ public class BankAccountMockTest {
     @DisplayName("Overdraft should trigger an email")
     @Test
     void should_trigger_email_when_overdrafting () {
-        
+
         // Arrange (Given)
         EmailSender emailSenderMock = mock(EmailSender.class);
-        TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryMock);
+        TransactionHistory transactionHistoryDummy = mock(TransactionHistory.class);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistoryDummy);
 
         // Act (When)
         try {
