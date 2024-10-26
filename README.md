@@ -10,8 +10,10 @@ Part of the A-CSD training course.
 ### What is this branch for? ###
 
 Implementation of the functionalities of
-* deposit
-* withdraw
+
+> * `deposit()`
+>
+> * `withdraw()`
 
 and their corresponding unit tests.
 
