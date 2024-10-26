@@ -11,15 +11,16 @@ Part of the A-CSD training course.
 
 This branch showcases the use of a manually developed mock email sender component:
 
-* FakeEmailSender
+> `FakeEmailSender`
 
 In order to prevent a direct dependency on the mock implementation, the DIP (Dependency Inversion Principle)
 is applied by introducing the interface:
 
-* EmailSender
+> `EmailSender`
 
-DIP says: high-level modules should not depend on low-level modules (both should depend on abstractions)
-DI: Dependency Injection: BankAccount's dependencies are injected.
+* *Dependency Inversion Principle* (__DIP__): says: high-level modules should not depend on low-level modules (both should depend on abstractions)
+
+* *Dependency Injection* (__DI__): BankAccount's dependencies are injected (alternative: __IoC__: Inversion of Control)
 
 ### Branches ###
 
@@ -33,7 +34,7 @@ DI: Dependency Injection: BankAccount's dependencies are injected.
 * 7-bank-account-with-transaction-history: showcase creation of new dependency
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
-
+* 10-bank-account-with-transaction-history-integration-test
 
 
 
