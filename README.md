@@ -9,8 +9,7 @@ Part of the A-CSD training course.
 
 ### What is this branch for? ###
 
-1. TDD-style implementation of `TransactionHistory` as an in memory implementation.
-2. Implementation of an *integration test*, using the in memory implementation.
+* Implementation of an *integration test*, using the in memory implementation.
 
 ### Branches ###
 
