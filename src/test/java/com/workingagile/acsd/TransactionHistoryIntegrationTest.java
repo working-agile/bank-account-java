@@ -15,9 +15,9 @@ public class TransactionHistoryIntegrationTest {
     public void get_bank_statement_with_in_memory_transaction_history() throws Exception {
 
         // Given
-        EmailSender emailSenderMock = mock(EmailSender.class);
+        EmailSender emailSenderDummy = mock(EmailSender.class);
         TransactionHistory transactionHistory = new TransactionHistoryInMemory();
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderMock, transactionHistory);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistory);
         bankAccount.deposit(50);
         bankAccount.withdraw(10);
         bankAccount.deposit(100);
