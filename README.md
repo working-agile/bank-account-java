@@ -11,8 +11,9 @@ Part of the A-CSD training course.
 
 Start coding the basic functionalities of BankAccount:
 
-* deposit
-* withdraw
+> * `deposit()`
+> 
+> * `withdraw()`
 
 ### Branches ###
 
@@ -26,7 +27,7 @@ Start coding the basic functionalities of BankAccount:
 * 7-bank-account-with-transaction-history: showcase creation of new dependency
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
-
+* 10-bank-account-with-transaction-history-integration-test
 
 
 
