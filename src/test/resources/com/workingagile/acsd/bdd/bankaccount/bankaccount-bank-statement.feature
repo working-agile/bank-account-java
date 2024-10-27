@@ -1,0 +1,2 @@
+Feature: Bank statement
+
