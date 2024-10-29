@@ -12,8 +12,10 @@ Part of the A-CSD training course.
 * show cases a simple scenario and it's implementation
 * starting point for first bank account scenarios
 
+### What should I do? ###
 
-
+* Understand the addition scenario and implementation
+* Implement the unit tests as bdd scenarios
 
 
 ### Branches ###
