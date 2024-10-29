@@ -9,8 +9,7 @@ Part of the A-CSD training course.
 
 ### What is this branch for? ###
 
-* show cases a simple scenario and it's implementation
-* starting point for first bank account scenarios
+* start implementing scenarios for the bank account.
 
 
 
