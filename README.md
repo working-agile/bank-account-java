@@ -11,6 +11,10 @@ Part of the A-CSD training course.
 
 * Implementation of an *integration test*, using the in memory implementation.
 
+### What should I do? ###
+
+* Check out the integration test.
+
 ### Branches ###
 
 * main: empty
@@ -24,8 +28,8 @@ Part of the A-CSD training course.
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
-
-
+* 11-bank-account-with-bdd-setup
+* 12-bank-account-with-bdd-solutions
 
 ### Who do I talk to? ###
 
