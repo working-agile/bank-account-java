@@ -9,12 +9,11 @@ Part of the A-CSD training course.
 
 ### What is this branch for? ###
 
-* show cases a simple scenario and it's implementation
-* starting point for first bank account scenarios
+* create the first BDD scenario e its implementation
 
+### What should I do? ###
 
-
-
+* Check out the solution for the scenario implementation.
 
 ### Branches ###
 
