@@ -1,6 +1,0 @@
-Feature: Bank account
-
-
-
-
-
