@@ -9,14 +9,12 @@ Part of the A-CSD training course.
 
 ### What is this branch for? ###
 
-* show cases a simple scenario and it's implementation
-* starting point for first bank account scenarios
+* create the first BDD scenario e its implementation
 
 ### What should I do? ###
 
-* Understand the addition scenario and implementation
-* Implement the unit tests as bdd scenarios
-
+* Write a scenario for adding to numbers
+* Implement the scenario
 
 ### Branches ###
 
@@ -32,8 +30,10 @@ Part of the A-CSD training course.
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
 
-* 11-bank-account-with-bdd-setup
-* 12-bank-account-with-bdd-solutions
+* 11-addition-with-bdd-setup
+* 12-addition-with-bdd-solutions
+* 13-bank-account-with-bdd-setup
+* 14-bank-account-with-bdd-solutions
 
 
 
