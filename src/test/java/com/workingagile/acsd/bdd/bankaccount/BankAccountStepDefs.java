@@ -11,7 +11,6 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.platform.commons.util.Preconditions.notNull;
 import static org.mockito.Mockito.mock;
 
 public class BankAccountStepDefs {
@@ -46,7 +45,7 @@ public class BankAccountStepDefs {
     Exception exception;
 
     @When("a client withdraws {int}")
-    public void aClientWithdraws(int amount) throws BankAccount.InsufficientBalanceException {
+    public void aClientWithdraws(int amount) {
         try {
             myBankAccount.withdraw(amount);
         } catch(Exception e) {
@@ -61,7 +60,6 @@ public class BankAccountStepDefs {
         assertThat(exception, is(instanceOf(BankAccount.InsufficientBalanceException.class)));
 
     }
-
 
 
 }
