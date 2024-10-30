@@ -1,4 +1,4 @@
-package bdd.bankaccount;
+package com.workingagile.acsd.bdd.bankaccount;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
