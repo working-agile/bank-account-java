@@ -1,4 +1,4 @@
-package bdd.addition;
+package com.workingagile.acsd.bdd.addition;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
