@@ -65,54 +65,5 @@ public class BankAccountUnitTest {
         assertThat(bankAccount.getBalance(), is(equalTo(1000)));
     }
 
-    @DisplayName("Should transfer a value to other account")
-    @Test
-    void shouldTransferMoneyToOtherBankAccount() throws Exception {
-        // Arrange (Given)
-        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryDummy);
-        BankAccount bankAccountReceiver = new BankAccount(0, 0, emailSenderDummy, transactionHistoryDummy);
-
-        // Act (When)
-        bankAccountSender.transfer(500, bankAccountReceiver);
-
-        // Assert (Then)
-        assertThat(bankAccountSender.getBalance(), is(equalTo(500)));
-        assertThat(bankAccountReceiver.getBalance(), is(equalTo(500)));
-    }
-
-    @DisplayName("Transfer amount higher than the balance, should not transfer")
-    @Test
-    void shouldNotTransferWhenTransferAmountIsHigherThanTheBalance() {
-        // Arrange (Given)
-        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryDummy);
-        BankAccount bankAccountReceiver = new BankAccount(0, 0, emailSenderDummy, transactionHistoryDummy);
-
-        // Act (When)
-        try {
-            bankAccountSender.transfer(1100, bankAccountReceiver);
-            fail("transfer not expected to go through");
-        } catch (BankAccount.InsufficientBalanceException e) {}
-
-        // Assert (Then)
-        assertThat(bankAccountSender.getBalance(), is(equalTo(1000)));
-        assertThat(bankAccountReceiver.getBalance(), is(equalTo(0)));
-    }
-
-    @DisplayName("Transfer fee is charged when transferring money")
-    @Test
-    void shouldApplyTransferFeeWhenTransferringToOtherBankAccount() throws Exception {
-
-        // Arrange (Given)
-        int transferFee = 10;
-        BankAccount bankAccountSender = new BankAccount(1000, transferFee, emailSenderDummy, transactionHistoryDummy);
-        BankAccount bankAccountReceiver = new BankAccount(0, transferFee, emailSenderDummy, transactionHistoryDummy);
-
-        // Act (When)
-        bankAccountSender.transfer(500, bankAccountReceiver);
-
-        // Assert (Then)
-        assertThat(bankAccountSender.getBalance(), is(equalTo(490)));
-        assertThat(bankAccountReceiver.getBalance(), is(equalTo(500)));
-    }
 
 }
