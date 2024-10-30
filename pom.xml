@@ -20,7 +20,7 @@
 			<dependency>
 				<groupId>io.cucumber</groupId>
 				<artifactId>cucumber-bom</artifactId>
-				<version>7.19.0</version>
+				<version>7.20.1</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
@@ -44,6 +44,12 @@
 		<dependency>
 			<groupId>io.cucumber</groupId>
 			<artifactId>cucumber-junit-platform-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>io.cucumber</groupId>
+			<artifactId>cucumber-picocontainer</artifactId>
 			<scope>test</scope>
 		</dependency>
 
@@ -72,6 +78,9 @@
 			<version>3.0</version>
 			<scope>test</scope>
 		</dependency>
+
+
+
 	</dependencies>
 
 	<build>

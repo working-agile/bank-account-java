@@ -10,7 +10,7 @@ Part of the A-CSD training course.
 ### What is this branch for? ###
 
 * check out the BDD scenario test implementations and compare them to the unit tests.
-
+* illustration of pico container to share state between step definition classes
 
 
 ### Branches ###
