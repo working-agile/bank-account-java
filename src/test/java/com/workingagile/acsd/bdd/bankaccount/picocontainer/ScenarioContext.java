@@ -10,6 +10,9 @@ import static org.mockito.Mockito.mock;
 
 public class ScenarioContext implements Disposable, Startable {
 
+    public Exception exception;
+    public int initialBalanceNathan;
+    public int initialBalanceSabrina;
     EmailSender emailSender;
     TransactionHistory transactionHistory;
 

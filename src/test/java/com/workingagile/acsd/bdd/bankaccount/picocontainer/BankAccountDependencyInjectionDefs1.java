@@ -23,11 +23,13 @@ public class BankAccountDependencyInjectionDefs1 {
     public void nathanHasABankAccountWith(int initialBalance) {
         context.bankAccountNathan = new BankAccount(initialBalance,
                 context.transferFee, context.emailSender, context.transactionHistory);
+        context.initialBalanceNathan = initialBalance;
     }
 
     @And("Sabrina has a bank account with {int}")
     public void sabrinaHasABankAccountWith(int initialBalance) {
         context.bankAccountSabrina = new BankAccount(initialBalance,
                 context.transferFee, context.emailSender, context.transactionHistory);
+        context.initialBalanceSabrina = initialBalance;
     }
 }

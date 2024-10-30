@@ -1,13 +1,15 @@
 package com.workingagile.acsd.bdd.bankaccount.picocontainer;
 
+import com.workingagile.acsd.BankAccount;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
 
 public class BankAccountDependencyInjectionDefs2 {
 
@@ -22,9 +24,14 @@ public class BankAccountDependencyInjectionDefs2 {
         System.out.println("2 - Before scenario....");
     }
 
+    @When("Nathan tries to transfers {int} to Sabrina")
     @When("Nathan transfers {int} to Sabrina")
-    public void nathanTransfersToSabrina(int amountTransfer) throws Exception {
-        context.bankAccountNathan.transfer(amountTransfer, context.bankAccountSabrina);
+    public void nathanTransfersToSabrina(int amountTransfer) {
+        try {
+            context.bankAccountNathan.transfer(amountTransfer, context.bankAccountSabrina);
+        } catch(Exception e) {
+            context.exception = e;
+        }
     }
 
     @Then("Sabrina should have {int}")
@@ -35,5 +42,18 @@ public class BankAccountDependencyInjectionDefs2 {
     @And("Nathan should have {int}")
     public void nathanShouldHave(int expectedBalance) {
         assertThat(context.bankAccountNathan.getBalance(), is(equalTo(expectedBalance)));
+    }
+
+
+    @Then("the transfer should be cancelled")
+    public void theTransferShouldBeCancelled() {
+        assertThat(context.exception, is(not(nullValue())));
+        assertThat(context.exception, is(instanceOf(BankAccount.InsufficientBalanceException.class)));
+    }
+
+    @And("both should have the same amount in their accounts")
+    public void bothShouldHaveTheSameAmountInTheirAccounts() {
+        assertThat(context.bankAccountNathan.getBalance(), is(context.initialBalanceNathan));
+        assertThat(context.bankAccountSabrina.getBalance(), is(context.initialBalanceSabrina));
     }
 }
