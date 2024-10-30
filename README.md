@@ -9,9 +9,7 @@ Part of the A-CSD training course.
 
 ### What is this branch for? ###
 
-* start implementing scenarios for the bank account.
-
-
+* check out the BDD scenario test implementations and compare them to the unit tests.
 
 
 
