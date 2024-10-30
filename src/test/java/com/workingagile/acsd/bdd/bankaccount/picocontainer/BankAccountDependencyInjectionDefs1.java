@@ -32,4 +32,9 @@ public class BankAccountDependencyInjectionDefs1 {
                 context.transferFee, context.emailSender, context.transactionHistory);
         context.initialBalanceSabrina = initialBalance;
     }
+
+    @And("the bank is charging a transfer fee of {int}")
+    public void theBankIsChargingATransferFeeOf(int transferFee) {
+        context.transferFee = transferFee;
+    }
 }
