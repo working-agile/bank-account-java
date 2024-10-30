@@ -49,7 +49,7 @@ public class BankAccountUnitTest {
         assertThat(bankAccount.getBalance(), is(equalTo(800)));
     }
 
-    @DisplayName("Overdrawing the bank account is not allowed")
+    @DisplayName("Overdraft the bank account is not allowed")
     @Test
     void overdrawingAmount() {
         // Arrange (Given)

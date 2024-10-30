@@ -7,9 +7,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.junit.platform.commons.util.Preconditions.notNull;
 import static org.mockito.Mockito.mock;
 
 public class BankAccountStepDefs {
@@ -40,5 +42,26 @@ public class BankAccountStepDefs {
         int currentBalance = myBankAccount.getBalance();
         assertThat(currentBalance, is(equalTo(expectedBalance)));
     }
+
+    Exception exception;
+
+    @When("a client withdraws {int}")
+    public void aClientWithdraws(int amount) throws BankAccount.InsufficientBalanceException {
+        try {
+            myBankAccount.withdraw(amount);
+        } catch(Exception e) {
+            exception = e;
+        }
+    }
+
+    @Then("the transaction should be cancelled")
+    public void theTransactionShouldBeCancelled() {
+
+        assertThat(exception, is(not(nullValue())));
+        assertThat(exception, is(instanceOf(BankAccount.InsufficientBalanceException.class)));
+
+    }
+
+
 
 }

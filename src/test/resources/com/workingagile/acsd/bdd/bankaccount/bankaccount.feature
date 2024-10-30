@@ -9,8 +9,17 @@ Feature: Bank Account
     When a client deposits 200
     Then the account should have a balance of 1200
 
+  Scenario: Withdrawing from a bank account
+
+    Given a bank account with the initial balance of 1000
+    When a client withdraws 200
+    Then the account should have a balance of 800
+
+  Scenario: Overdraft from a bank account is not allowed
+
+    Given a bank account with the initial balance of 1000
+    When a client withdraws 1100
+    Then the transaction should be cancelled
+    And the account should have a balance of 1000
 
 
-# @DisplayName("Deposits should increase the balance according to the amount")
-# @DisplayName("Withdrawals should decrease the balance according to the amount")
-# @DisplayName("Overdrawing the bank account is not allowed")
