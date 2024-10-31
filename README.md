@@ -13,7 +13,7 @@ Part of the A-CSD training course.
 * illustration of pico container to share state between step definition classes
 * illustration of scenario templates and example tables
 * illustration of the usage of mock objects
-
+* outline of the BDD approach to implement the Transaction SHistory
 
 ### Branches ###
 
