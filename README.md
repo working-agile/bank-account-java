@@ -17,8 +17,6 @@ some functionality in `BankAccount`.
 It does __NOT__ show how the `TransactionHistory` itself is implemented (see branch 10).
 
 
-
-
 ### Branches ###
 
 * main: empty
@@ -33,6 +31,10 @@ It does __NOT__ show how the `TransactionHistory` itself is implemented (see bra
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
 
+* 11-addition-with-bdd-setup
+* 12-addition-with-bdd-solutions
+* 13-bank-account-with-bdd-setup
+* 14-bank-account-with-bdd-solutions
 
 
 ### Who do I talk to? ###
