@@ -25,7 +25,10 @@ Part of the A-CSD training course.
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
 
-
+* 11-addition-with-bdd-setup
+* 12-addition-with-bdd-solutions
+* 13-bank-account-with-bdd-setup
+* 14-bank-account-with-bdd-solutions
 
 ### Who do I talk to? ###
 
