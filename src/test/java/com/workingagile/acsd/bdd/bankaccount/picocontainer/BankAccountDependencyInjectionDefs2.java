@@ -34,11 +34,13 @@ public class BankAccountDependencyInjectionDefs2 {
         }
     }
 
+    @Then("Sabrina's account should have {int}")
     @Then("Sabrina should have {int}")
     public void sabrinaShouldHave(int expectedBalance) {
         assertThat(context.bankAccountSabrina.getBalance(), is(equalTo(expectedBalance)));
     }
 
+    @And("Nathan's account should have {int}")
     @And("Nathan should have {int}")
     public void nathanShouldHave(int expectedBalance) {
         assertThat(context.bankAccountNathan.getBalance(), is(equalTo(expectedBalance)));
@@ -56,4 +58,15 @@ public class BankAccountDependencyInjectionDefs2 {
         assertThat(context.bankAccountNathan.getBalance(), is(context.initialBalanceNathan));
         assertThat(context.bankAccountSabrina.getBalance(), is(context.initialBalanceSabrina));
     }
+
+    @Then("the transfer is {string}")
+    public void theTransferIsStatus(String expectedStatus) {
+        if (expectedStatus.equals("successful")) {
+            assertThat(context.exception, is(nullValue()));
+        } else if (expectedStatus.equals("cancelled")) {
+            assertThat(context.exception, is(not(nullValue())));
+            assertThat(context.exception, is(instanceOf(BankAccount.InsufficientBalanceException.class)));
+        }
+    }
+
 }

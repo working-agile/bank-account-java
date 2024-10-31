@@ -33,6 +33,7 @@ public class BankAccountDependencyInjectionDefs1 {
         context.initialBalanceSabrina = initialBalance;
     }
 
+    @Given("a transfer fee of {int}")
     @And("the bank is charging a transfer fee of {int}")
     public void theBankIsChargingATransferFeeOf(int transferFee) {
         context.transferFee = transferFee;
