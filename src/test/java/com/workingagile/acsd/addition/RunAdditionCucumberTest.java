@@ -1,4 +1,4 @@
-package com.workingagile.acsd.bdd.addition;
+package com.workingagile.acsd.addition;
 
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
@@ -9,7 +9,7 @@ import static io.cucumber.junit.platform.engine.Constants.PLUGIN_PROPERTY_NAME;
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectPackages("com.workingagile.acsd.bdd.addition")
+@SelectPackages("com.workingagile.acsd.addition")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty, html:target/cucumber-report/addition/cucumber.html," +
         "json:target/cucumber-report/addition/cucumber.json"
 )
