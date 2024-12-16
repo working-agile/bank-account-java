@@ -21,6 +21,11 @@ Part of the A-CSD training course.
 * 1-addition-with-bdd-solution: solution to addition exercise
 * 2-addition-with-bdd-solution-refactored: introduction of domain object
 
+* 3-a-bank-account-deposit-todo: start writing the scenarios here
+* 3-b-bank-account-deposit-scenarios: scenarios formulated
+* 3-c-bank-account-deposit-scenarios-implemented: scenarios implemented
+
+
 
 
 
