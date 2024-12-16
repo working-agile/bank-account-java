@@ -25,6 +25,9 @@ Part of the A-CSD training course.
 * 3-b-bank-account-deposit-scenarios: scenarios formulated
 * 3-c-bank-account-deposit-scenarios-implemented: scenarios implemented
 
+* 4-a-bank-account-withdrawal-todo: start writing the scenarios here
+* 4-b-bank-account-withdrawal-scenarios: scenarios formulated
+* 4-c-bank-account-withdrawal-scenarios-implemented: scenarios implemented
 
 
 
