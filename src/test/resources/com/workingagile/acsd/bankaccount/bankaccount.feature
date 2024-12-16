@@ -5,6 +5,6 @@ Feature: Bank Account
 
   Scenario: Deposit an amount into the bank account
 
-    Given aaa
-    When bbb
-    Then ccc
+    Given a bank account with the initial balance of 1000
+    When a client deposits 200
+    Then the account should have a balance of 1200
