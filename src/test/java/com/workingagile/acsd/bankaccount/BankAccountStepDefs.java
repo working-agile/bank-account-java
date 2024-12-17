@@ -4,9 +4,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 public class BankAccountStepDefs {
 
@@ -33,20 +34,28 @@ public class BankAccountStepDefs {
 
     }
 
-    @When("a client withdraws {int}")
-    public void a_client_withdraws(Integer amount) {
 
-        bankAccount.withdraw(amount);
+
+    @When("a client withdraws {int}")
+    public void a_client_withdraws(Integer amount)  {
+
+        try {
+            bankAccount.withdraw(amount);
+        } catch (InsufficientBalanceException e) {
+            exception = e;
+        }
 
     }
+
+    Exception exception;
 
     @Then("the transaction should be cancelled")
     public void the_transaction_should_be_cancelled() {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        assertThat(exception, is(not(nullValue())));
+        assertThat(exception, is(instanceOf(InsufficientBalanceException.class)));
+
     }
-
-
 
 
 }
