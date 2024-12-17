@@ -2,8 +2,6 @@ package com.workingagile.acsd.bankaccount;
 
 public class BankAccount {
 
-    public static class InsufficientBalanceException extends Exception {}
-
     private int balance;
 
     public BankAccount(Integer initialBalance) {
@@ -26,5 +24,11 @@ public class BankAccount {
         balance = balance - amountToWithdraw;
     }
 
+    public void transfer(Integer transferAmount, BankAccount bankAccountReceiver) throws InsufficientBalanceException {
+        withdraw(transferAmount);
+        bankAccountReceiver.deposit(transferAmount);
+    }
+
+    public static class InsufficientBalanceException extends Exception {}
 
 }
