@@ -15,4 +15,8 @@ public class BankAccount {
     public Integer getBalance() {
         return balance;
     }
+
+    public void withdraw(Integer amountToWithdraw) {
+        balance = balance - amountToWithdraw;
+    }
 }

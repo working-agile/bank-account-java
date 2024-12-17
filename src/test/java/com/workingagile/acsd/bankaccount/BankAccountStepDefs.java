@@ -35,8 +35,9 @@ public class BankAccountStepDefs {
 
     @When("a client withdraws {int}")
     public void a_client_withdraws(Integer amount) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        bankAccount.withdraw(amount);
+
     }
 
     @Then("the transaction should be cancelled")
