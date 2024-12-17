@@ -41,7 +41,7 @@ public class BankAccountStepDefs {
 
         try {
             bankAccount.withdraw(amount);
-        } catch (InsufficientBalanceException e) {
+        } catch (BankAccount.InsufficientBalanceException e) {
             exception = e;
         }
 
@@ -53,7 +53,7 @@ public class BankAccountStepDefs {
     public void the_transaction_should_be_cancelled() {
 
         assertThat(exception, is(not(nullValue())));
-        assertThat(exception, is(instanceOf(InsufficientBalanceException.class)));
+        assertThat(exception, is(instanceOf(BankAccount.InsufficientBalanceException.class)));
 
     }
 

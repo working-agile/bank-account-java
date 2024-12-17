@@ -2,6 +2,8 @@ package com.workingagile.acsd.bankaccount;
 
 public class BankAccount {
 
+    public static class InsufficientBalanceException extends Exception {}
+
     private int balance;
 
     public BankAccount(Integer initialBalance) {
