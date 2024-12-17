@@ -17,6 +17,10 @@ public class BankAccount {
     }
 
     public void withdraw(Integer amountToWithdraw) throws InsufficientBalanceException {
+        if (amountToWithdraw > balance) {
+            throw new InsufficientBalanceException();
+        }
+
         balance = balance - amountToWithdraw;
     }
 
