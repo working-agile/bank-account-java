@@ -74,7 +74,6 @@ public class BankAccountTransferStepDefs {
 
     }
 
-
     int transferFee;
 
     @Given("the bank is charging a transfer fee of {int}")
@@ -84,7 +83,11 @@ public class BankAccountTransferStepDefs {
 
     }
 
-
+    @Then("the transfer is {string}")
+    public void the_transfer_is(String transferStatus) {
+        // Write code here that turns the phrase above into concrete actions
+        throw new io.cucumber.java.PendingException();
+    }
 
 
 }
