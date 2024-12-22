@@ -38,7 +38,6 @@ public class BankAccountTransferStepDefs {
 
         try {
             bankAccountNathan.transferWithFee(transferAmount, bankAccountSabrina, transferFee);
-            //bankAccountNathan.transfer(transferAmount, bankAccountSabrina);
         } catch (Exception e) {
             exceptionWhenTransferring = e;
         }
