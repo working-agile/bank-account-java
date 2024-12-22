@@ -85,8 +85,20 @@ public class BankAccountTransferStepDefs {
 
     @Then("the transfer is {string}")
     public void the_transfer_is(String transferStatus) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        if (transferStatus.equals("cancelled")) {
+
+            assertThat(exceptionWhenTransferring, is(not(nullValue())));
+            assertThat(exceptionWhenTransferring, is(instanceOf(BankAccount.InsufficientBalanceException.class)));
+
+        } else if (transferStatus.equals("successful")) {
+
+            assertThat(exceptionWhenTransferring, is(nullValue()));
+
+        } else {
+            throw new IllegalArgumentException("unknown transfer status specified");
+        }
+
     }
 
 
