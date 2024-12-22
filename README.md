@@ -9,7 +9,7 @@ Part of the A-CSD training course.
 
 ### What is this branch for? ###
 
-* Reformulate the transfer scenarios in a single scenario outline/template.
+* Implement the transfer scenarios based on this scenario outline/template.
 
 
 
@@ -38,7 +38,8 @@ Part of the A-CSD training course.
 * 5-b-bank-account-transfer-scenarios: scenarios formulated
 * 5-c-bank-account-transfer-scenarios: scenarios implemented
 * 5-d-bank-account-transfer-with-scenario-templates
-* 5-e-bank-account-transfer-with-scenario-templates: implemented
+* 5-e-bank-account-transfer-with-scenario-templates: formulated
+* 5-f-bank-account-transfer-with-scenario-templates: implemented
 
 
 
