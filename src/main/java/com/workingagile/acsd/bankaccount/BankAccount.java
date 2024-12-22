@@ -3,9 +3,15 @@ package com.workingagile.acsd.bankaccount;
 public class BankAccount {
 
     private int balance;
+    EmailSender emailSender;
 
     public BankAccount(Integer initialBalance) {
         balance = initialBalance;
+    }
+
+    public BankAccount(Integer initialBalance, EmailSender emailSender) {
+        this(initialBalance);
+        this.emailSender = emailSender;
     }
 
     public void deposit(Integer amount) {
@@ -18,6 +24,9 @@ public class BankAccount {
 
     public void withdraw(Integer amountToWithdraw) throws InsufficientBalanceException {
         if (amountToWithdraw > balance) {
+            if (emailSender != null) {
+                emailSender.sendEmailToBank();
+            }
             throw new InsufficientBalanceException();
         }
 
