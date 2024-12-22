@@ -28,13 +28,21 @@ public class BankAccountTransferStepDefs {
 
     }
 
+    Exception exceptionWhenTransferring;
+
     @When("Nathan tries to transfers {int} to Sabrina")
     @When("Nathan transfers {int} to Sabrina")
     public void nathan_transfers_to_sabrina(Integer transferAmount) throws BankAccount.InsufficientBalanceException {
 
-        bankAccountNathan.transfer(transferAmount, bankAccountSabrina);
+        try {
+            bankAccountNathan.transfer(transferAmount, bankAccountSabrina);
+        } catch (Exception e) {
+            exceptionWhenTransferring = e;
+        }
 
     }
+
+
 
     @Then("Sabrina should have {int}")
     public void sabrina_should_have(Integer expectedBalance) {
