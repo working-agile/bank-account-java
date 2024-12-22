@@ -26,3 +26,5 @@ Feature: Transfer between bank accounts
     When Nathan transfers 150 to Sabrina
     Then Sabrina should have 650
     And Nathan should have 840
+
+

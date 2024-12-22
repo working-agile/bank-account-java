@@ -9,7 +9,12 @@ Part of the A-CSD training course.
 
 ### What is this branch for? ###
 
-* create the first BDD scenario e its implementation
+* Reformulate the transfer scenarios in a single scenario outline/template.
+
+
+
+
+
 
 ### What should I do? ###
 
