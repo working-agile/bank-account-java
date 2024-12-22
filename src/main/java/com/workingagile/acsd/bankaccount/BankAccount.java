@@ -29,6 +29,11 @@ public class BankAccount {
         bankAccountReceiver.deposit(transferAmount);
     }
 
+    public void transferWithFee(Integer transferAmount, BankAccount bankAccountReceiver, Integer transferFee) throws InsufficientBalanceException {
+        withdraw(transferAmount + transferFee);
+        bankAccountReceiver.deposit(transferAmount);
+    }
+
     public static class InsufficientBalanceException extends Exception {}
 
 }

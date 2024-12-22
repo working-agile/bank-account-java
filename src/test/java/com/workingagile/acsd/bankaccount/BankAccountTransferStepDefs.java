@@ -34,10 +34,11 @@ public class BankAccountTransferStepDefs {
 
     @When("Nathan tries to transfers {int} to Sabrina")
     @When("Nathan transfers {int} to Sabrina")
-    public void nathan_transfers_to_sabrina(Integer transferAmount) throws BankAccount.InsufficientBalanceException {
+    public void nathan_transfers_to_sabrina(Integer transferAmount) {
 
         try {
-            bankAccountNathan.transfer(transferAmount, bankAccountSabrina);
+            bankAccountNathan.transferWithFee(transferAmount, bankAccountSabrina, transferFee);
+            //bankAccountNathan.transfer(transferAmount, bankAccountSabrina);
         } catch (Exception e) {
             exceptionWhenTransferring = e;
         }
@@ -75,10 +76,13 @@ public class BankAccountTransferStepDefs {
     }
 
 
+    int transferFee;
+
     @Given("the bank is charging a transfer fee of {int}")
     public void the_bank_is_charging_a_transfer_fee_of(Integer transferFee) {
-        // Write code here that turns the phrase above into concrete actions
-        throw new io.cucumber.java.PendingException();
+
+        this.transferFee = transferFee;
+
     }
 
 
