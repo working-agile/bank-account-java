@@ -41,6 +41,9 @@ Part of the A-CSD training course.
 * 5-e-bank-account-transfer-with-scenario-templates: formulated
 * 5-f-bank-account-transfer-with-scenario-templates: implemented
 
+* 6-a-bank-account-overdraft-with-email-todo
+* 6-b-bank-account-overdraft-with-email-scenario-formulated
+* 6-c-bank-account-overdraft-with-email-scenario-implemented
 
 
 
