@@ -9,7 +9,7 @@ Part of the A-CSD training course.
 
 ### What is this branch for? ###
 
-* Implementation of an *integration test*, using the in memory implementation.
+* Implementation of an *integration test*, based on TestContainers using a real Postgres database
 
 ### What should I do? ###
 
@@ -28,6 +28,8 @@ Part of the A-CSD training course.
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
+* 11-bank-account-with-transaction-history-database-test
+
 
 * 11-addition-with-bdd-setup
 * 12-addition-with-bdd-solutions
