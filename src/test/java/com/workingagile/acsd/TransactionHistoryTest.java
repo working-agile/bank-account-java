@@ -19,36 +19,36 @@ public class TransactionHistoryTest {
     @Test
     void the_deposit_is_informed_to_the_transaction_history() {
         // Arrange (Given)
-        TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryMock);
+        TransactionHistory transactionHistoryStub = mock(TransactionHistory.class);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryStub);
 
         // Act (When)
         bankAccount.deposit(200);
 
         // Assert (Then)
-        verify(transactionHistoryMock, times(1)).informTransaction("deposit", 200);
+        verify(transactionHistoryStub, times(1)).informTransaction("deposit", 200);
     }
 
     @DisplayName("Withdrawals should be informed to the transaction history")
     @Test
     void the_withdrawal_is_informed_to_the_transaction_history() throws Exception {
         // Arrange (Given)
-        TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryMock);
+        TransactionHistory transactionHistoryStub = mock(TransactionHistory.class);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryStub);
 
         // Act (When)
         bankAccount.withdraw(200);
 
         // Assert (Then)
-        verify(transactionHistoryMock, times(1)).informTransaction("withdraw", 200);
+        verify(transactionHistoryStub, times(1)).informTransaction("withdraw", 200);
     }
 
     @DisplayName("Withdrawal that goes not through is not informed to the transaction history")
     @Test
     void aborted_withdrawals_are_not_informed_to_the_transaction_history() {
         // Arrange (Given)
-        TransactionHistory transactionHistoryMock = mock(TransactionHistory.class);
-        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryMock);
+        TransactionHistory transactionHistoryStub = mock(TransactionHistory.class);
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryStub);
 
         // Act (When)
         try {
@@ -56,7 +56,7 @@ public class TransactionHistoryTest {
         } catch (Exception e) {}
 
         // Assert (Then)
-        verify(transactionHistoryMock, never()).informTransaction(any(String.class), (anyInt()));
+        verify(transactionHistoryStub, never()).informTransaction(any(String.class), (anyInt()));
     }
 
 
@@ -64,10 +64,10 @@ public class TransactionHistoryTest {
     @Test
     void successful_transfers_are_registered_in_the_transaction_history() {
         // Arrange (Given)
-        TransactionHistory transactionHistorySenderMock = mock(TransactionHistory.class);
-        TransactionHistory transactionHistoryReceiverMock = mock(TransactionHistory.class);
-        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistorySenderMock);
-        BankAccount bankAccountReceiver = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryReceiverMock);
+        TransactionHistory transactionHistorySenderStub = mock(TransactionHistory.class);
+        TransactionHistory transactionHistoryReceiverStub = mock(TransactionHistory.class);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistorySenderStub);
+        BankAccount bankAccountReceiver = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryReceiverStub);
 
         // Act (When)
         try {
@@ -75,18 +75,18 @@ public class TransactionHistoryTest {
         } catch (Exception e) {}
 
         // Assert (Then)
-        verify(transactionHistorySenderMock, times(1)).informTransaction("withdraw", 300);
-        verify(transactionHistoryReceiverMock, times(1)).informTransaction("deposit", 300);
+        verify(transactionHistorySenderStub, times(1)).informTransaction("withdraw", 300);
+        verify(transactionHistoryReceiverStub, times(1)).informTransaction("deposit", 300);
     }
 
     @DisplayName("Unsuccessful transfers are not registered in the TransactionHistory")
     @Test
     void unsuccessful_transfers_are_not_registered_in_the_transaction_history() {
         // Arrange (Given)
-        TransactionHistory transactionHistorySenderMock = mock(TransactionHistory.class);
-        TransactionHistory transactionHistoryReceiverMock = mock(TransactionHistory.class);
-        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistorySenderMock);
-        BankAccount bankAccountReceiver = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryReceiverMock);
+        TransactionHistory transactionHistorySenderStub = mock(TransactionHistory.class);
+        TransactionHistory transactionHistoryReceiverStub = mock(TransactionHistory.class);
+        BankAccount bankAccountSender = new BankAccount(1000, 0, emailSenderDummy, transactionHistorySenderStub);
+        BankAccount bankAccountReceiver = new BankAccount(1000, 0, emailSenderDummy, transactionHistoryReceiverStub);
 
         // Act (When)
         try {
@@ -94,8 +94,8 @@ public class TransactionHistoryTest {
         } catch (Exception e) {}
 
         // Assert (Then)
-        verify(transactionHistorySenderMock, never()).informTransaction(any(String.class), (anyInt()));
-        verify(transactionHistoryReceiverMock, never()).informTransaction(any(String.class), (anyInt()));
+        verify(transactionHistorySenderStub, never()).informTransaction(any(String.class), (anyInt()));
+        verify(transactionHistoryReceiverStub, never()).informTransaction(any(String.class), (anyInt()));
     }
 
 
