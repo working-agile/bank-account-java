@@ -4,7 +4,7 @@ Bank Account exercise
 
 ### What is this repository for? ###
 
-Coding exercises for the Introduction to TDD and BDD.
+Coding exercises for the Introduction to TDD.
 Part of the A-CSD training course.
 
 ### What is this branch for? ###
@@ -30,10 +30,6 @@ It has a caveat: it creates a new dependency (on the fake component).
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
 
-* 11-addition-with-bdd-setup
-* 12-addition-with-bdd-solutions
-* 13-bank-account-with-bdd-setup
-* 14-bank-account-with-bdd-solutions
 
 
 
