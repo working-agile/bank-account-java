@@ -30,11 +30,6 @@ The students are working on branch 2 and can check a possible solution in this b
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
 
-* 11-addition-with-bdd-setup
-* 12-addition-with-bdd-solutions
-* 13-bank-account-with-bdd-setup
-* 14-bank-account-with-bdd-solutions
-
 ### Who do I talk to? ###
 
 * Axel Wilhelm Berle
