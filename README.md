@@ -20,15 +20,11 @@ Part of the A-CSD training course.
 * 4-bank-account-manual-mock: showcases how to implement a mock for dependencies
 * 5-bank-account-manual-mock-Dependency-Injection: showcases dependency injection
 * 6-bank-account-with-mockito: showcases use of Mockito
-* 7-bank-account-with-transaction-history: showcase creation of new dependency
+* 7-bank-account-with-transaction-history: testing interaction with collaborator
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
 
-* 11-addition-with-bdd-setup
-* 12-addition-with-bdd-solutions
-* 13-bank-account-with-bdd-setup
-* 14-bank-account-with-bdd-solutions
 
 ### Who do I talk to? ###
 
