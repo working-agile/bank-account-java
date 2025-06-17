@@ -26,9 +26,7 @@ public class TransactionHistoryPostgres implements TransactionHistory {
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             PreparedStatement pstmt = conn.prepareStatement(
-                    """
-                            INSERT INTO bank_transactions(id, amount) VALUES(?, ?);
-                        """
+                    "INSERT INTO bank_transactions(id, amount) VALUES(?, ?); "
             );
             pstmt.setInt(1, counter++);
             pstmt.setInt(2, amount);

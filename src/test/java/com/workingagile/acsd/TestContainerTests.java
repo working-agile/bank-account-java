@@ -55,12 +55,10 @@ public class TestContainerTests {
 
         try (Connection conn = DriverManager.getConnection(url, username, password)) {
             PreparedStatement pstmt = conn.prepareStatement(
-                    """
-                    create table if not exists bank_transactions (
-                        id bigint NOT NULL,
-                        amount integer
-                    )
-                    """
+                    "create table if not exists bank_transactions ( " +
+                    "   id bigint NOT NULL, " +
+                    "   amount integer " +
+                    ") "
             );
             pstmt.execute();
         } catch (SQLException e) {
