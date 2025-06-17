@@ -26,7 +26,7 @@ It does __NOT__ show how the `TransactionHistory` itself is implemented (see bra
 * 4-bank-account-manual-mock: showcases how to implement a mock for dependencies
 * 5-bank-account-manual-mock-Dependency-Injection: showcases dependency injection
 * 6-bank-account-with-mockito: showcases use of Mockito
-* 7-bank-account-with-transaction-history: showcase creation of new dependency
+* 7-bank-account-with-transaction-history: testing interaction with collaborator
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
