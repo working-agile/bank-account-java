@@ -24,7 +24,7 @@ Part of the A-CSD training course.
 * 8-bank-account-with-transaction-history-stub: showcase use of a stub
 * 9-bank-account-with-transaction-history-implementation: showcase TDD for InMemoryTransactionHistory
 * 10-bank-account-with-transaction-history-integration-test
-
+* 11-bank-account-with-transaction-history-database-test
 
 ### Who do I talk to? ###
 
