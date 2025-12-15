@@ -1,57 +1,83 @@
 package com.workingagile.acsd;
 
-import com.icegreen.greenmail.util.DummySSLSocketFactory;
-import com.icegreen.greenmail.util.GreenMail;
-import com.icegreen.greenmail.util.ServerSetup;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import com.icegreen.greenmail.junit5.GreenMailExtension;
+import com.icegreen.greenmail.util.*;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.RegisterExtension;
+import org.simplejavamail.api.email.Email;
+import org.simplejavamail.api.mailer.Mailer;
+import org.simplejavamail.email.EmailBuilder;
+import org.simplejavamail.mailer.MailerBuilder;
 
-import java.security.Security;
+import java.time.Duration;
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 public class EmailIntegrationTest {
 
-    private static GreenMail greenMail;
-    private static final int port=3025;
-    private static final String bindAddress = "0.0.0.0";
-    private static final String protocol = "smtps";
-    private static final String user = "test@gmail.com";
-    private static final String password = "XXX";
+    @RegisterExtension
+    static GreenMailExtension greenMail = new GreenMailExtension(ServerSetupTest.SMTP);
 
-    @BeforeAll
-    static void setup() {
-        Security.setProperty("ssl.SocketFactory.provider", DummySSLSocketFactory.class.getName());
-        greenMail = new GreenMail(new ServerSetup(port, bindAddress, protocol));
-        greenMail.setUser(user, password);
-        greenMail.start();
+
+    @Test
+    @DisplayName("Send test")
+    void testSendingEmailWithGreenMailAndSimpleMailSender() throws Exception {
+
+        Email email = EmailBuilder.startingBlank()
+                .from("sender@example.com")
+                .to("recipient@example.com")
+                .withSubject("Email with Plain Text!")
+                .withPlainText("This is a test email sent using SJM.")
+                .buildEmail();
+
+        try (Mailer mailer = MailerBuilder
+                .withSMTPServer("localhost", 3025)
+                .buildMailer()) {
+
+            mailer.sendMail(email);
+        }
+
+        final MimeMessage[] receivedMessages = greenMail.getReceivedMessages();
+        final MimeMessage receivedMessage = receivedMessages[0];
+        assertEquals("This is a test email sent using SJM.", receivedMessage.getContent());
     }
 
-    @AfterAll
-    static void tearDown() {
-        greenMail.stop();
-    }
+
 
 
 
     @DisplayName("Overdrafts trigger email")
     @Test
-    void sendEmailWhenOverdraft() {
+    void sendEmailWhenOverdraft() throws MessagingException {
 
         // Arrange (Given)
-
-
-        BankAccount bankAccount = new BankAccount(1000);
+        SimpleEmailSender emailSender = new SimpleEmailSender();
+        BankAccount bankAccount = new BankAccount(1000, 0, emailSender);
 
         // Act (When)
-        bankAccount.deposit(2000);
+        try {
+            bankAccount.withdraw(2000);
+        } catch (BankAccount.InsufficientBalanceException ignored) {
+            // ignore
+        }
 
-        // Assert (Then)
-        // Verify the email has been sent
+        // Assert
+        boolean received = greenMail.waitForIncomingEmail(Duration.ofSeconds(1).toMillis(), 1);
+        assertThat(received, is(true));
 
-
+        // Assert: inspect the received message(s)
+        MimeMessage[] messages = greenMail.getReceivedMessages();
+        assertThat(messages.length, is(1));
+        assertThat(messages[0].getSubject(), is("Alarm!"));
+        String receivedBody = GreenMailUtil.getBody(messages[0]).trim();
+        assertThat(receivedBody, containsString("There has been an overdraft!!"));
     }
-
-
 
 }
