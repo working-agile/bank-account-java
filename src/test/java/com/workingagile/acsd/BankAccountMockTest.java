@@ -21,7 +21,7 @@ public class BankAccountMockTest {
         try {
             bankAccount.withdraw(1100);
             fail("withdrawal not expected to go through");
-        } catch (BankAccount.InsufficientBalanceException e) {}
+        } catch (BankAccount.InsufficientBalanceException ignored) {}
 
         // Assert (Then)
         assertThat(fakeEmailSender.hasSentEmail, is(true));
