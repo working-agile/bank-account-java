@@ -25,7 +25,6 @@ public class EmailIntegrationTest {
     @RegisterExtension
     static GreenMailExtension greenMail = new GreenMailExtension(ServerSetupTest.SMTP);
 
-
     @Test
     @DisplayName("Send test")
     void testSendingEmailWithGreenMailAndSimpleMailSender() throws Exception {
@@ -48,10 +47,6 @@ public class EmailIntegrationTest {
         final MimeMessage receivedMessage = receivedMessages[0];
         assertEquals("This is a test email sent using SJM.", receivedMessage.getContent());
     }
-
-
-
-
 
     @DisplayName("Overdrafts trigger email")
     @Test
