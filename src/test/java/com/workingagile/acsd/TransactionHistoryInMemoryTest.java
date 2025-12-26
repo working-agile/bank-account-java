@@ -40,7 +40,7 @@ public class TransactionHistoryInMemoryTest {
         List<Integer> transactionList = transactionHistory.getTransactionHistory();
         assertThat(transactionList, is(not(empty())));
         assertThat(transactionList.size(), is(1));
-        assertThat(transactionList.get(0), is(50));
+        assertThat(transactionList.getFirst(), is(50));
 
     }
 
@@ -58,7 +58,7 @@ public class TransactionHistoryInMemoryTest {
         List<Integer> transactionList = transactionHistory.getTransactionHistory();
         assertThat(transactionList, is(not(empty())));
         assertThat(transactionList.size(), is(1));
-        assertThat(transactionList.get(0), is(-50));
+        assertThat(transactionList.getFirst(), is(-50));
 
     }
 
@@ -96,7 +96,7 @@ public class TransactionHistoryInMemoryTest {
 
         // Assert (Then)
         List<Integer> transactionList2 = transactionHistory.getTransactionHistory();
-        assertThat(transactionList2.get(0), is(100));
+        assertThat(transactionList2.getFirst(), is(100));
 
     }
 
