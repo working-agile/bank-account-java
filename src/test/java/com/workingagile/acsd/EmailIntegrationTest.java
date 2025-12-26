@@ -26,8 +26,8 @@ public class EmailIntegrationTest {
     static GreenMailExtension greenMail = new GreenMailExtension(ServerSetupTest.SMTP);
 
     @Test
-    @DisplayName("Send test")
-    void testSendingEmailWithGreenMailAndSimpleMailSender() throws Exception {
+    @DisplayName("Simple email sending test")
+    void sendEmailWithGreenMailAndSimpleMailSender() throws Exception {
 
         Email email = EmailBuilder.startingBlank()
                 .from("sender@example.com")
