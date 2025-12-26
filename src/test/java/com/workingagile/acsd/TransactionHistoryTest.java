@@ -53,7 +53,7 @@ public class TransactionHistoryTest {
         // Act (When)
         try {
             bankAccount.withdraw(1001);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
 
         // Assert (Then)
         verify(transactionHistoryMock, never()).informTransaction(any(String.class), (anyInt()));
@@ -72,7 +72,7 @@ public class TransactionHistoryTest {
         // Act (When)
         try {
             bankAccountSender.transfer(300, bankAccountReceiver);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
 
         // Assert (Then)
         verify(transactionHistorySenderMock, times(1)).informTransaction("withdraw", 300);
@@ -91,7 +91,7 @@ public class TransactionHistoryTest {
         // Act (When)
         try {
             bankAccountSender.transfer(1001, bankAccountReceiver);
-        } catch (Exception e) {}
+        } catch (Exception ignored) {}
 
         // Assert (Then)
         verify(transactionHistorySenderMock, never()).informTransaction(any(String.class), (anyInt()));

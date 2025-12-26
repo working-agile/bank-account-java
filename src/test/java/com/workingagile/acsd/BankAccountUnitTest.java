@@ -59,7 +59,7 @@ public class BankAccountUnitTest {
         try {
             bankAccount.withdraw(1100);
             fail("withdrawal not expected to go through");
-        } catch (BankAccount.InsufficientBalanceException e) {}
+        } catch (BankAccount.InsufficientBalanceException ignored) {}
 
         // Assert (Then)
         assertThat(bankAccount.getBalance(), is(equalTo(1000)));
@@ -91,7 +91,7 @@ public class BankAccountUnitTest {
         try {
             bankAccountSender.transfer(1100, bankAccountReceiver);
             fail("transfer not expected to go through");
-        } catch (BankAccount.InsufficientBalanceException e) {}
+        } catch (BankAccount.InsufficientBalanceException ignored) {}
 
         // Assert (Then)
         assertThat(bankAccountSender.getBalance(), is(equalTo(1000)));
